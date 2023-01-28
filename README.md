@@ -2,22 +2,22 @@
 
 ## users テーブル
 
-| Column                  | Type   | Options          |
-| ----------------------- | ------ | ---------------- |
-| nickname                | string | null: false      |
-| email                   | string | uniqueness: true |df
-| encrypted_password      | string | null: false      |df
-| first_name              | string | null: false      |
-| last_name               | string | null: false      |
-| first_name_kana         | string | null: false      |
-| last_name_kana          | string | null: false      |
-| birthday                | date   | null: false      |
+| Column                  | Type   | Options           |
+| ----------------------- | ------ | ----------------  |
+| nickname                | string | null: false       |
+| email                   | string | unique: true 　　　|df
+| encrypted_password      | string | null: false       |df
+| first_name              | string | null: false       |
+| last_name               | string | null: false       |
+| first_name_kana         | string | null: false       |
+| last_name_kana          | string | null: false       |
+| birthday                | date   | null: false       |
 
 
 ### Association
 
 - has_many :items
-- has_many :purchases_item
+- has_many :orders
 
 
 
@@ -27,22 +27,22 @@
 | ------------------------- | ---------- | ------------------------------ |
 | item_name                 | string     | null: false                    |
 | explanation               | text       | null: false                    |
-| category                  | string     | null: false                    |
-| states                    | string     | null: false                    |
-| postage_type              | string     | null: false                    |
-| prefecture                | string     | null: false                    |
-| preparation_days          | string     | null: false                    |
-| value                     | string     | null: false                    |
+| category_id               | string     | null: false                    |
+| condition_id              | string     | null: false                    |
+| postage_id                | string     | null: false                    |
+| prefecture_id             | string     | null: false                    |
+| preparation_id            | string     | null: false                    |
+| price                     | string     | null: false                    |
 | user                      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :purchases_item
+- has_one :orders
 
 
 
-## purchases_item テーブル
+## orders テーブル
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
@@ -53,23 +53,23 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :purchases_info
+- has_one payment
 
 
 
 
-## purchases_info テーブル
+## payments テーブル
 
-| Column             | Type   | Options        |
-| ------------------ | ------ | ---------------|
-| post_code          | string | null: false    |
-| prefectures_info   | string | null: false    |
-| city               | string | null: false    |
-| address            | string | null: false    |
-| building_name      | string |                |
-| phone_number       | string | null: false    |
-
+| Column             | Type       | Options                            |
+| ------------------ | ---------- | -----------------------------------|
+| post_code          | string     | null: false                        |
+| prefecture_id　　　 | string     | null: false                        |
+| city               | string     | null: false                        |
+| address            | string     | null: false                        |
+| building_name      | string     |                                    |
+| phone_number       | string     | null: false                        |
+| order_id           | references | null: false, foreign_key: true     |
 
 ### Association
 
-- belongs_to :purchases_item
+- belongs_to :order
