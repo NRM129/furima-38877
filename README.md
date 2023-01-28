@@ -2,21 +2,22 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |df
-| encrypted_password | string | null: false |df
-| first_name         | string | null: false |
-| last_name          | string | null: false |
-| birthday_year      | string | null: false |
-| birthday_month     | string | null: false |
-| birthday_day       | string | null: false |
+| Column                  | Type   | Options          |
+| ----------------------- | ------ | ---------------- |
+| nickname                | string | null: false      |
+| email                   | string | uniqueness: true |df
+| encrypted_password      | string | null: false      |df
+| first_name              | string | null: false      |
+| last_name               | string | null: false      |
+| first_name_kana         | string | null: false      |
+| last_name_kana          | string | null: false      |
+| birthday                | date   | null: false      |
+
 
 ### Association
 
 - has_many :items
-- has_many :purchase
+- has_many :purchases_item
 
 
 
@@ -25,7 +26,7 @@
 | Column                    | Type   | Options                        |
 | ------------------------- | ------ | ------------------------------ |
 | item_name                 | string | null: false                    |
-| explanation               | string | null: false                    |
+| explanation               | text   | null: false                    |
 | category                  | string | null: false                    |
 | states                    | string | null: false                    |
 | postage_type              | string | null: false                    |
@@ -37,27 +38,27 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase_item
+- has_one :purchases_item
 
 
 
-## purchase_item テーブル
+## purchases_item テーブル
 
-| Column      | Type   | Options                        |
-| ----------- | ------ | ------------------------------ |
-| item        | string | null: false, foreign_key: true |
-| user        | string | null: false, foreign_key: true |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| item        | references | null: false, foreign_key: true |
+| user        | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :address
+- has_one :purchases_info
 
 
 
 
-## purchase_info テーブル
+## purchases_info テーブル
 
 | Column             | Type   | Options        |
 | ------------------ | ------ | ---------------|
@@ -65,11 +66,10 @@
 | prefectures_info   | string | null: false    |
 | city               | string | null: false    |
 | address            | string | null: false    |
-| prefectures_info   | string | null: false    |
 | building_name      | string |                |
 | phone_number       | string | null: false    |
 
 
 ### Association
 
-- belongs_to :address
+- belongs_to :purchases_item
