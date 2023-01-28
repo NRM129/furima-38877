@@ -27,18 +27,18 @@
 | ------------------------- | ---------- | ------------------------------ |
 | item_name                 | string     | null: false                    |
 | explanation               | text       | null: false                    |
-| category_id               | string     | null: false                    |
-| condition_id              | string     | null: false                    |
-| postage_id                | string     | null: false                    |
-| prefecture_id             | string     | null: false                    |
-| preparation_id            | string     | null: false                    |
+| category_id               | integer    | null: false                    |
+| condition_id              | integer    | null: false                    |
+| postage_id                | integer    | null: false                    |
+| prefecture_id             | integer    | null: false                    |
+| preparation_id            | integer    | null: false                    |
 | price                     | string     | null: false                    |
 | user                      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :orders
+- has_one :order
 
 
 
@@ -68,7 +68,7 @@
 | address            | string     | null: false                        |
 | building_name      | string     |                                    |
 | phone_number       | string     | null: false                        |
-| order_id           | references | null: false, foreign_key: true     |
+| order　　           | references | null: false, foreign_key: true     |
 
 ### Association
 
