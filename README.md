@@ -23,17 +23,17 @@
 
 ## items テーブル
 
-| Column                    | Type   | Options                        |
-| ------------------------- | ------ | ------------------------------ |
-| item_name                 | string | null: false                    |
-| explanation               | text   | null: false                    |
-| category                  | string | null: false                    |
-| states                    | string | null: false                    |
-| postage_type              | string | null: false                    |
-| prefecture                | string | null: false                    |
-| preparation_days          | string | null: false                    |
-| value                     | string | null: false                    |
-| user                      | string | null: false, foreign_key: true |
+| Column                    | Type       | Options                        |
+| ------------------------- | ---------- | ------------------------------ |
+| item_name                 | string     | null: false                    |
+| explanation               | text       | null: false                    |
+| category                  | string     | null: false                    |
+| states                    | string     | null: false                    |
+| postage_type              | string     | null: false                    |
+| prefecture                | string     | null: false                    |
+| preparation_days          | string     | null: false                    |
+| value                     | string     | null: false                    |
+| user                      | references | null: false, foreign_key: true |
 
 ### Association
 
