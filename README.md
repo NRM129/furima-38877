@@ -39,6 +39,11 @@
 
 - belongs_to :user
 - has_one :order
+- belongs_to :category_id
+- belongs_to :condition_id
+- belongs_to :postage_id
+- belongs_to :prefecture_id
+- belongs_to :preparation_id
 
 
 
