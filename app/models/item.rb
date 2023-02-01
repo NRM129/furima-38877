@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     validates :image
     validates :item_name
     validates :explanation
-    validates :price, format: numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price, format: { with: only_integer: true }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
     
     # カテゴリー
     validates :category_id, numericality:     { other_than: 1, message: "can't be blank" }
