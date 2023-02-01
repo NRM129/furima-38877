@@ -63,32 +63,32 @@ RSpec.describe Item, type: :model do
     expect(@item.errors.full_messages).to include 'Price is not a number'
   end
 
-  it 'category_idが空では登録できない' do
-    @item.category_id = ''
+  it 'category_idが1では登録できない' do
+    @item.category_id = '1'
     @item.valid?
     expect(@item.errors.full_messages).to include "Category can't be blank"
   end
 
-  it 'condition_idが空では登録できない' do
-    @item.condition_id = ''
+  it 'condition_idが1では登録できない' do
+    @item.condition_id = '1'
     @item.valid?
     expect(@item.errors.full_messages).to include "Condition can't be blank"
   end
 
-  it 'postage_idが空では登録できない' do
-    @item.postage_id = ''
+  it 'postage_idが1では登録できない' do
+    @item.postage_id = '1'
     @item.valid?
     expect(@item.errors.full_messages).to include "Postage can't be blank"
   end
 
-  it 'prefecture_idが空では登録できない' do
-    @item.prefecture_id = ''
+  it 'prefecture_idが1では登録できない' do
+    @item.prefecture_id = '1'
     @item.valid?
     expect(@item.errors.full_messages).to include "Prefecture can't be blank"
   end
 
-  it 'preparation_idが空では登録できない' do
-    @item.preparation_id = ''
+  it 'preparation_idが1では登録できない' do
+    @item.preparation_id = '1'
     @item.valid?
     expect(@item.errors.full_messages).to include "Preparation can't be blank"
     end
