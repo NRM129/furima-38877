@@ -14,16 +14,21 @@ RSpec.describe Item, type: :model do
   end
 
   context '商品出品できないとき' do
+
+    it 'userが紐付いていなければ登録できない' do
+      @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+    end
+
     it 'imageが空では登録できない' do
       @item.image = nil
       @item.valid?
       expect(@item.errors.full_messages).to include "Image can't be blank"
     end
-  end
 
   it 'item_nameが空では登録できない' do
     @item.item_name = ''
-
     @item.valid?
     expect(@item.errors.full_messages).to include "Item name can't be blank"
   end
@@ -86,5 +91,6 @@ RSpec.describe Item, type: :model do
     @item.preparation_id = ''
     @item.valid?
     expect(@item.errors.full_messages).to include "Preparation can't be blank"
+    end
   end
 end
