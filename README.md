@@ -39,6 +39,12 @@
 
 - belongs_to :user
 - has_one :order
+- belongs_to :category_id
+- belongs_to :condition_id
+- belongs_to :postage_id
+- belongs_to :prefecture_id
+- belongs_to :preparation_id
+- has_one_attached :image
 
 
 
@@ -73,3 +79,20 @@
 ### Association
 
 - belongs_to :order
+
+
+
+## ActiveHash
+
+| model            | 
+| ---------------- | 
+| category         | 
+| condition.       | 
+| postage          | 
+| prefecture       | 
+| preparation      | 
+
+
+| active_storage      | 
+| ------------------- | 
+| image               | 
