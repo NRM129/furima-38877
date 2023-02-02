@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_unavailable, only: [:edit, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -23,9 +24,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return if current_user.id == @item.user_id
-
-    redirect_to root_path
   end
 
   def update
@@ -35,6 +33,12 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+  end
+
+
+
 
   private
 
@@ -49,7 +53,12 @@ class ItemsController < ApplicationController
 
   def move_to_index
     return if user_signed_in?
-
     redirect_to action: :index
   end
+
+  def move_to_unavailable
+    return if current_user.id == @item.user_id
+    redirect_to root_path
+  end
+
 end
