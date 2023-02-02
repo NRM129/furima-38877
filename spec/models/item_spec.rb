@@ -14,11 +14,10 @@ RSpec.describe Item, type: :model do
   end
 
   context '商品出品できないとき' do
-
     it 'userが紐付いていなければ登録できない' do
       @item.user = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include('User must exist')
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
     end
 
     it 'imageが空では登録できない' do
@@ -27,70 +26,70 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include "Image can't be blank"
     end
 
-  it 'item_nameが空では登録できない' do
-    @item.item_name = ''
-    @item.valid?
-    expect(@item.errors.full_messages).to include "Item name can't be blank"
-  end
+    it 'item_nameが空では登録できない' do
+      @item.item_name = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Item name can't be blank"
+    end
 
-  it 'explanationが空では登録できない' do
-    @item.explanation = ''
-    @item.valid?
-    expect(@item.errors.full_messages).to include "Explanation can't be blank"
-  end
+    it 'explanationが空では登録できない' do
+      @item.explanation = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Explanation can't be blank"
+    end
 
-  it 'priceが空では登録できない' do
-    @item.price = ''
-    @item.valid?
-    expect(@item.errors.full_messages).to include "Price can't be blank"
-  end
+    it 'priceが空では登録できない' do
+      @item.price = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Price can't be blank"
+    end
 
-  it 'priceが300円以下では登録できない' do
-    @item.price = '299'
-    @item.valid?
-    expect(@item.errors.full_messages).to include 'Price must be greater than or equal to 300'
-  end
+    it 'priceが300円以下では登録できない' do
+      @item.price = '299'
+      @item.valid?
+      expect(@item.errors.full_messages).to include 'Price must be greater than or equal to 300'
+    end
 
-  it 'priceが9999999円以上では登録できない' do
-    @item.price = '1,000,000'
-    @item.valid?
-    expect(@item.errors.full_messages).to include 'Price is not a number'
-  end
+    it 'priceが9999999円以上では登録できない' do
+      @item.price = '1,000,000'
+      @item.valid?
+      expect(@item.errors.full_messages).to include 'Price is not a number'
+    end
 
-  it 'priceが全角では登録できない' do
-    @item.price = '１０００'
-    @item.valid?
-    expect(@item.errors.full_messages).to include 'Price is not a number'
-  end
+    it 'priceが全角では登録できない' do
+      @item.price = '１０００'
+      @item.valid?
+      expect(@item.errors.full_messages).to include 'Price is not a number'
+    end
 
-  it 'category_idが1では登録できない' do
-    @item.category_id = 1
-    @item.valid?
-    expect(@item.errors.full_messages).to include "Category can't be blank"
-  end
+    it 'category_idが1では登録できない' do
+      @item.category_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Category can't be blank"
+    end
 
-  it 'condition_idが1では登録できない' do
-    @item.condition_id = 1
-    @item.valid?
-    expect(@item.errors.full_messages).to include "Condition can't be blank"
-  end
+    it 'condition_idが1では登録できない' do
+      @item.condition_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Condition can't be blank"
+    end
 
-  it 'postage_idが1では登録できない' do
-    @item.postage_id = 1
-    @item.valid?
-    expect(@item.errors.full_messages).to include "Postage can't be blank"
-  end
+    it 'postage_idが1では登録できない' do
+      @item.postage_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Postage can't be blank"
+    end
 
-  it 'prefecture_idが1では登録できない' do
-    @item.prefecture_id = 1
-    @item.valid?
-    expect(@item.errors.full_messages).to include "Prefecture can't be blank"
-  end
+    it 'prefecture_idが1では登録できない' do
+      @item.prefecture_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Prefecture can't be blank"
+    end
 
-  it 'preparation_idが1では登録できない' do
-    @item.preparation_id = 1
-    @item.valid?
-    expect(@item.errors.full_messages).to include "Preparation can't be blank"
+    it 'preparation_idが1では登録できない' do
+      @item.preparation_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Preparation can't be blank"
     end
   end
 end

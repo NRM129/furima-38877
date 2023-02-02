@@ -23,9 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    return if current_user.id == @item.user_id
+
+    redirect_to root_path
   end
 
   def update
@@ -35,8 +35,6 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-
-
 
   private
 
@@ -49,13 +47,9 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-
   def move_to_index
     return if user_signed_in?
 
     redirect_to action: :index
   end
 end
-
-
-
