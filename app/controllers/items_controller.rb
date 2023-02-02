@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
+  # before_action :set_item, only: [:show]
 
   def index
-    # @item = Item.all
+    @items = Item.all.order(created_at: :desc)
   end
 
   def new
@@ -18,6 +19,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  # def show
+  #   @item = Item.find(params[:id])
+  # end
+
+
   private
 
   def item_params
@@ -25,9 +31,17 @@ class ItemsController < ApplicationController
                                  :preparation_id, :price).merge(user_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+
   def move_to_index
     return if user_signed_in?
 
     redirect_to action: :index
   end
 end
+
+
+
