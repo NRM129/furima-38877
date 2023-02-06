@@ -1,6 +1,6 @@
-class DonationAddress
+class OrderPayment
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post_code,  :prefecture, :city, :address, :building_name, :phone_number, :order_id
+  attr_accessor :item_id, :user_id, :post_code,  :prefecture_id, :city, :address, :building_name, :phone_number, :order_id
 
   with_options presence: true do
     # 郵便番号(数字3桁、ハイフン、数字4桁の並びのみ許可)
@@ -12,19 +12,18 @@ class DonationAddress
     # 番地
     validates :address
     # 電話番号
-    validates :phone_number, format: {with: /\A\d{3}[-]\d{4}[-]\d{4}\z/ }
+    validates :phone_number, format: {with: /\A[0-9]{11}\z/ }
     
     validates :user_id
     validates :item_id
   end
 
   def save
-  # 寄付情報を保存し、変数donationに代入する
-  order = Order.create(user_id: :user_id, item_id: item_id)
-  # 住所を保存する
-  # donation_idには、変数donationのidと指定する
-  Payment.create(post_code: post_code, prefecture: prefecture, city: city, address: address, building_name: building_name, phone_number: phone_number, order_id: order_id)
-
-end
+    # 購入情報を保存し、変数orderに代入する
+    order = Order.create(user_id: :user_id, item_id: item_id)
+    # 住所を保存する
+    # order_idには、変数orderのidと指定する
+    Payment.create(post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number, order_id: order.id)
+  end
 
 end
