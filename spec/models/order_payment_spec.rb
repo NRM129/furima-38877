@@ -9,7 +9,12 @@ RSpec.describe OrderPayment, type: :model do
   end
 
   context '商品購入できる場合' do
-    it 'すべての情報があれば登録できる' do
+    it 'すべての情報があれば購入できる' do
+      expect(@order_payment).to be_valid
+    end
+
+    it 'building_nameが空でも購入できる' do
+      @order_payment.building_name = ''
       expect(@order_payment).to be_valid
     end
   end
@@ -63,19 +68,25 @@ RSpec.describe OrderPayment, type: :model do
       expect(@order_payment.errors.full_messages).to include("Phone number can't be blank")
     end
 
-    it 'phone_numberが9桁以下では登録できない' do
+    it 'phone_numberが9桁以下では購入できない' do
       @order_payment.phone_number = 12_345_678
       @order_payment.valid?
       expect(@order_payment.errors.full_messages).to include('Phone number is invalid')
     end
 
-    it 'phone_numberが12桁以下では登録できない' do
+    it 'phone_numberが12桁以下では購入できない' do
       @order_payment.phone_number = 123_456_789_012
       @order_payment.valid?
       expect(@order_payment.errors.full_messages).to include('Phone number is invalid')
     end
 
-    it 'tokenが空では登録できないこと' do
+    it 'phone_numberが数字以外が含まれている場合は購入できない' do
+      @order_payment.phone_number = 'A12_4567_8901'
+      @order_payment.valid?
+      expect(@order_payment.errors.full_messages).to include('Phone number is invalid')
+    end
+
+    it 'tokenが空では購入できないこと' do
       @order_payment.token = nil
       @order_payment.valid?
       expect(@order_payment.errors.full_messages).to include("Token can't be blank")

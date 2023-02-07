@@ -1,6 +1,6 @@
 class OrderPayment
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :order_id, :token
+  attr_accessor :item_id, :user_id, :post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :token
 
   with_options presence: true do
     # 郵便番号(数字3桁、ハイフン、数字4桁の並びのみ許可)
