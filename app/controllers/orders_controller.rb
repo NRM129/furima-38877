@@ -1,18 +1,16 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, only: :index
 
   def index
     @item = Item.find(params[:item_id])
     @order_payment = OrderPayment.new
-    if @item.order.present? && user_signed_in?
+    if @item.order.present?
       redirect_to root_path
+
     end
-
-
   end
 
   def create
-    # binding.pry
     @item = Item.find(params[:item_id])
     @order_payment = OrderPayment.new(order_params)
     if  @order_payment.valid?
@@ -35,7 +33,7 @@ class OrdersController < ApplicationController
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
-      card: order_params[:token],
+      card: order_params[:token], 
       currency: 'jpy'
       )
   end

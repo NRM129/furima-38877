@@ -24,9 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.order.present?
-      redirect_to root_path
-    end
+    return unless @item.order.present?
+
+    redirect_to root_path
   end
 
   def update
@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to root_path
   end
-
 
   private
 
@@ -63,5 +62,4 @@ class ItemsController < ApplicationController
     return if current_user.id == @item.user_id
     redirect_to root_path
   end
-
 end

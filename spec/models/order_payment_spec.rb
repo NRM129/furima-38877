@@ -5,7 +5,7 @@ RSpec.describe OrderPayment, type: :model do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
 
-    @order_payment = FactoryBot.build(:order_payment,user_id: @user.id, item_id: @item.id)
+    @order_payment = FactoryBot.build(:order_payment, user_id: @user.id, item_id: @item.id)
   end
 
   context '商品購入できる場合' do
@@ -18,7 +18,7 @@ RSpec.describe OrderPayment, type: :model do
     it 'user_idが空だと購入できない' do
       @order_payment.user_id = ''
       @order_payment.valid?
-      expect(@order_payment.errors.full_messages).to include ("User can't be blank")
+      expect(@order_payment.errors.full_messages).to include("User can't be blank")
     end
 
     it 'item_idが空だと購入できない' do
@@ -34,9 +34,9 @@ RSpec.describe OrderPayment, type: :model do
     end
 
     it 'post_codeが数字のみだと購入できない' do
-      @order_payment.post_code = 1234567
+      @order_payment.post_code = 1_234_567
       @order_payment.valid?
-      expect(@order_payment.errors.full_messages).to include("Post code is invalid")
+      expect(@order_payment.errors.full_messages).to include('Post code is invalid')
     end
 
     it 'prefecture_idが1では登録できない' do
@@ -64,19 +64,18 @@ RSpec.describe OrderPayment, type: :model do
     end
 
     it 'phone_numberが9桁以下では登録できない' do
-      @order_payment.phone_number = 12345678
+      @order_payment.phone_number = 12_345_678
       @order_payment.valid?
-      expect(@order_payment.errors.full_messages).to include("Phone number is invalid")
-    
+      expect(@order_payment.errors.full_messages).to include('Phone number is invalid')
     end
 
     it 'phone_numberが12桁以下では登録できない' do
-      @order_payment.phone_number = 123456789012
+      @order_payment.phone_number = 123_456_789_012
       @order_payment.valid?
-      expect(@order_payment.errors.full_messages).to include("Phone number is invalid")
+      expect(@order_payment.errors.full_messages).to include('Phone number is invalid')
     end
 
-    it "tokenが空では登録できないこと" do
+    it 'tokenが空では登録できないこと' do
       @order_payment.token = nil
       @order_payment.valid?
       expect(@order_payment.errors.full_messages).to include("Token can't be blank")

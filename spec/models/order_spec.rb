@@ -2,11 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   describe '商品購入' do
-
     before do
       @user = FactoryBot.create(:user)
       @item = FactoryBot.create(:item)
-      @order = FactoryBot.build(:order,user_id: @user.id, item_id: @item.id)
+      @order = FactoryBot.build(:order, user_id: @user.id, item_id: @item.id)
     end
 
     context '内容に問題ない場合' do
@@ -17,7 +16,6 @@ RSpec.describe Order, type: :model do
 
     context '内容に問題がある場合' do
       it 'user_idが空だと購入できない' do
-
         @order.user_id = ''
         @order.valid?
         expect(@order.errors.full_messages).to include('User must exist')
