@@ -5,10 +5,7 @@ class OrdersController < ApplicationController
 
   def index
     @order_payment = OrderPayment.new
-    if @item.order.present? 
-      redirect_to root_path
-    else  
-      current_user == @item.user
+    if @item.order.present? || current_user == @item.user
       redirect_to root_path
     end
   end
