@@ -59,7 +59,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one payment
+- has_one    :payment
 
 
 
@@ -92,6 +92,8 @@
 | prefecture       | 
 | preparation      | 
 
+
+## ActiveHash
 
 | active_storage      | 
 | ------------------- | 
