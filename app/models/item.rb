@@ -18,14 +18,14 @@ class Item < ApplicationRecord
                       numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
     # カテゴリー
-    validates :category_id, numericality:     { other_than: 1, message: "can't be blank" }
+    validates :category_id, numericality:     { other_than: 1, message: "を選択してください" }
     # 商品の状態
-    validates :condition_id, numericality:    { other_than: 1, message: "can't be blank" }
+    validates :condition_id, numericality:    { other_than: 1, message: "を選択してください" }
     # 配送料の負担
-    validates :postage_id, numericality:      { other_than: 1, message: "can't be blank" }
+    validates :postage_id, numericality:      { other_than: 1, message: "を選択してください" }
     # 都道府県
-    validates :prefecture_id, numericality:   { other_than: 1, message: "can't be blank" }
+    validates :prefecture_id, numericality:   { other_than: 1, message: "を選択してください" }
     # 発送までの日数
-    validates :preparation_id, numericality:  { other_than: 1, message: "can't be blank" }
+    validates :preparation_id, numericality:  { other_than: 1, message: "を選択してください" }
   end
 end
