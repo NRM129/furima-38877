@@ -6,7 +6,7 @@ class OrderPayment
     # 郵便番号(数字3桁、ハイフン、数字4桁の並びのみ許可)
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     # 都道府県
-    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+    validates :prefecture_id, numericality: { other_than: 1, message: "を選択してください" }
     # 市区町村
     validates :city
     # 番地
