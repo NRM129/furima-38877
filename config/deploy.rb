@@ -5,7 +5,7 @@ lock "~> 3.17.1"
 set :application, 'furima-38877'
 
 # どのリポジトリからアプリをpullするかを指定する
-set :repo_url, 'git@example.com:NRM129/furima-38877.git'
+set :repo_url, 'git@github.com:NRM129/furima-38877.git'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
